@@ -9,7 +9,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
-using IRSI.Accounting.Resources.Views;
+using Autofac;
+using IRSI.Accounting.Views;
 using NLog;
 
 namespace IRSI.Accounting
@@ -37,27 +38,9 @@ namespace IRSI.Accounting
 	  {
 		Logger.Info("Starting");
 
-		var dispatcherThreadInfo = $"Dispatcher managed thread identifier = {Thread.CurrentThread.ManagedThreadId}";
-		Debug.WriteLine(dispatcherThreadInfo);
-		Logger.Info(dispatcherThreadInfo);
-
-		Logger.Info($"WPF rendering capability (tier) = {RenderCapability.Tier / 0x10000}");
-		RenderCapability.TierChanged += (s, a) => Logger.Info($"WPF rendering capability (tier) ={RenderCapability.Tier / 0x10000}");
-
 		base.OnStartup(e);
-
-		BootStrapper.Start();
-		_disposable.Add(Disposable.Create(BootStrapper.Stop));
-
-		//get few services
-
-		var window = new MainWindow();
-		window.DataContext = BootStrapper.RootView;
-
-		window.Closed += (s, a) => HandleWindowClose();
-		Current.Exit += (s, a) => HandleExit();
-
-		window.Show();
+		Bootstrapper bootstrapper = new Bootstrapper();
+		bootstrapper.Run();
 
 		Logger.Info("Started");
 	  }

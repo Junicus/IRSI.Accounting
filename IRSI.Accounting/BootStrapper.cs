@@ -1,90 +1,76 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 using Autofac;
-using Autofac.Core;
-using IRSI.Accounting.Services;
-using IRSI.Accounting.ViewModels;
+using IRSI.Accounting.Views;
+using Prism.Autofac;
+using Prism.Modularity;
 
 namespace IRSI.Accounting
 {
-  public static class BootStrapper
+  public class Bootstrapper : AutofacBootstrapper
   {
-	private static ILifetimeScope _rootScope;
-	private static IChromeViewModel _chromeViewModel;
-
-	public static IViewModel RootView
+	protected override DependencyObject CreateShell()
 	{
-	  get
-	  {
-		if (_rootScope == null)
-		{
-		  Start();
-		}
-		_chromeViewModel = _rootScope.Resolve<IChromeViewModel>();
-		return _chromeViewModel;
-	  }
+	  return Container.Resolve<Shell>();
 	}
 
-	public static void Start()
+	protected override void InitializeShell()
 	{
-	  if (_rootScope != null) return;
+	  base.InitializeShell();
+	  Application.Current.MainWindow = (Shell)this.Shell;
+	  Application.Current.MainWindow.Show();
+	}
 
-	  var builder = new ContainerBuilder();
-	  var assemblies = new[] { Assembly.GetExecutingAssembly() };
+	protected override void ConfigureModuleCatalog()
+	{
+	  base.ConfigureModuleCatalog();
 
-	  builder.RegisterAssemblyTypes(assemblies)
-		.Where(t => typeof(IService).IsAssignableFrom(t))
-		.SingleInstance()
-		.AsImplementedInterfaces();
+	  string[] assemblyScannerPattern = new[] { @"IRSI.Accounting.Modules.*.dll" };
+	  Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
 
-	  builder.RegisterAssemblyTypes(assemblies)
-		.Where(t => typeof(IViewModel).IsAssignableFrom(t) && !typeof(ITransientViewModel).IsAssignableFrom(t))
-		.AsImplementedInterfaces();
+	  List<Assembly> assemblies = new List<Assembly>();
+	  assemblies.AddRange(Directory.EnumerateFiles(Directory.GetCurrentDirectory(), "*.dll", SearchOption.AllDirectories)
+		.Where(filename => assemblyScannerPattern.Any(pattern => Regex.IsMatch(filename, pattern)))
+		.Select(Assembly.LoadFile));
 
-	  builder.RegisterAssemblyTypes(assemblies)
-		.Where(t => typeof(IViewModel).IsAssignableFrom(t))
-		.Where(t =>
+	  foreach (var assembly in assemblies)
+	  {
+		var moduleTypes = assembly.DefinedTypes.Where(t => t.IsAssignableTo<IModule>());
+		foreach (var module in moduleTypes)
 		{
-		  var isAssignable = typeof(ITransientViewModel).IsAssignableFrom(t);
-		  if (isAssignable)
+		  ModuleCatalog.AddModule(new ModuleInfo
 		  {
-			Debug.WriteLine("Transient view model - " + t.Name);
-		  }
-		  return isAssignable;
-		})
-		.AsImplementedInterfaces()
-		.ExternallyOwned();
-
-	  _rootScope = builder.Build();
-	}
-
-	public static void Stop()
-	{
-	  _rootScope.Dispose();
-	}
-
-	public static T Resolve<T>()
-	{
-	  if (_rootScope == null)
-	  {
-		throw new Exception("Bootstrapper hasn't been started");
+			ModuleName = module.Name,
+			ModuleType = module.AssemblyQualifiedName
+		  });
+		}
 	  }
-
-	  return _rootScope.Resolve<T>(new Parameter[0]);
 	}
 
-	public static T Resolve<T>(Parameter[] parameters)
+	protected override void ConfigureContainerBuilder(ContainerBuilder builder)
 	{
-	  if (_rootScope == null)
+	  base.ConfigureContainerBuilder(builder);
+	  builder.RegisterType<Shell>();
+
+	  string[] assemblyScannerPattern = new[] { @"IRSI.Accounting.Modules.*.dll" };
+	  Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
+
+	  List<Assembly> assemblies = new List<Assembly>();
+	  assemblies.AddRange(Directory.EnumerateFiles(Directory.GetCurrentDirectory(), "*.dll", SearchOption.AllDirectories)
+		.Where(filename => assemblyScannerPattern.Any(pattern => Regex.IsMatch(filename, pattern)))
+		.Select(Assembly.LoadFile));
+
+	  foreach (var assembly in assemblies)
 	  {
-		throw new Exception("Bootstrapper hasn't been started");
+		builder.RegisterAssemblyModules(assembly);
 	  }
-	  return _rootScope.Resolve<T>(parameters);
 	}
   }
 }

@@ -1,0 +1,28 @@
+﻿<RibbonWindow x:Class="IRSI.Accounting.Views.Shell"
+			  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			  xmlns:prism="http://prismlibrary.com/"
+			  xmlns:common="clr-namespace:IRSI.Accounting.Common;assembly=IRSI.Accounting.Common"
+			  xmlns:local="clr-namespace:IRSI.Accounting.Views"
+			  mc:Ignorable="d"
+			  Title="Shell" Height="300" Width="300">
+  <DockPanel LastChildFill="True">
+	<Ribbon DockPanel.Dock="Top" prism:RegionManager.RegionName="{x:Static common:RegionNames.ModulesTabRegion}">
+	  <Ribbon.ApplicationMenu>
+		<RibbonApplicationMenu />
+	  </Ribbon.ApplicationMenu>
+	  <RibbonTab Header="Home">
+		<RibbonGroup Header="Modules" prism:RegionManager.RegionName="{x:Static common:RegionNames.ModulesGroupRegion}" />
+	  </RibbonTab>
+	</Ribbon>
+	<Border Margin="5">
+	  <DockPanel LastChildFill="True">
+		<Grid DockPanel.Dock="Left">
+		</Grid>
+		<ContentControl Margin="5" Background="Transparent" prism:RegionManager.RegionName="{x:Static common:RegionNames.ContentRegion}"/>
+	  </DockPanel>
+	</Border>
+  </DockPanel>
+</RibbonWindow>
