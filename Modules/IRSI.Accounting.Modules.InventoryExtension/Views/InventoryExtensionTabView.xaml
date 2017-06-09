@@ -1,0 +1,16 @@
+﻿<RibbonTab x:Class="IRSI.Accounting.Modules.InventoryExtension.Views.InventoryExtensionTabView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IRSI.Accounting.Modules.InventoryExtension.Views"
+             mc:Ignorable="d" Header="Inventory">
+  <RibbonGroup Header="Inventory Sources">
+	<RibbonButton Label="MenuLink"
+				  LargeImageSource="pack://application:,,,/IRSI.Accounting.Modules.InventoryExtension;component/Images/ML.png"
+				  Command="{Binding ShowInventoryExtensionMenuLinkView}" />
+	<RibbonButton Label="IslandWide"
+				  LargeImageSource="pack://application:,,,/IRSI.Accounting.Modules.InventoryExtension;component/Images/IslandWide.png"
+				  Command="{Binding ShowInventoryExtensionIslandWideView}" />
+  </RibbonGroup>
+</RibbonTab>

@@ -8,6 +8,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using Autofac;
+using IRSI.Accounting.Data;
+using IRSI.Accounting.Data.Repositories;
 using IRSI.Accounting.Views;
 using Prism.Autofac;
 using Prism.Modularity;
@@ -58,6 +60,8 @@ namespace IRSI.Accounting
 	{
 	  base.ConfigureContainerBuilder(builder);
 	  builder.RegisterType<Shell>();
+
+	  builder.RegisterType<InMemoryStoresRepository>().As<IStoresRepository>();
 
 	  string[] assemblyScannerPattern = new[] { @"IRSI.Accounting.Modules.*.dll" };
 	  Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);

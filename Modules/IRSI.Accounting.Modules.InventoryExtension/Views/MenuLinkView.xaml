@@ -1,0 +1,316 @@
+﻿<UserControl x:Class="IRSI.Accounting.Modules.InventoryExtension.Views.MenuLinkView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IRSI.Accounting.Modules.InventoryExtension.Views"
+			 xmlns:conv="clr-namespace:IRSI.Accounting.Modules.InventoryExtension.Views.Converters"
+			 xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+  <UserControl.Resources>
+	<BooleanToVisibilityConverter x:Key="boolConverter" />
+	<conv:AmountSumConverter x:Key="sumConverter" />
+
+	<CollectionViewSource x:Key="GroupByStore" Source="{Binding Items}">
+	  <CollectionViewSource.GroupDescriptions>
+		<PropertyGroupDescription PropertyName="Store" />
+	  </CollectionViewSource.GroupDescriptions>
+	  <CollectionViewSource.SortDescriptions>
+		<scm:SortDescription PropertyName="Store" />
+		<scm:SortDescription PropertyName="AccountNumber" />
+	  </CollectionViewSource.SortDescriptions>
+	</CollectionViewSource>
+
+	<LinearGradientBrush x:Key="BackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+	  <LinearGradientBrush.GradientStops>
+		<GradientStopCollection>
+		  <GradientStop Color="#FF6Fbde8" Offset="0" />
+		  <GradientStop Color="#FF4385BE" Offset="1" />
+		</GradientStopCollection>
+	  </LinearGradientBrush.GradientStops>
+	</LinearGradientBrush>
+	<LinearGradientBrush x:Key="HighlightBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+	  <LinearGradientBrush.GradientStops>
+		<GradientStopCollection>
+		  <GradientStop Color="#FF97d3f3" Offset="0" />
+		  <GradientStop Color="#ff4385be" Offset="1" />
+		</GradientStopCollection>
+	  </LinearGradientBrush.GradientStops>
+	</LinearGradientBrush>
+	<LinearGradientBrush x:Key="BorderBrush" StartPoint="0,0" EndPoint="0,1">
+	  <LinearGradientBrush.GradientStops>
+		<GradientStopCollection>
+		  <GradientStop Color="#FFafddf6" Offset="0" />
+		  <GradientStop Color="#ff2969aa" Offset="1" />
+		</GradientStopCollection>
+	  </LinearGradientBrush.GradientStops>
+	</LinearGradientBrush>
+	<LinearGradientBrush x:Key="PressedBorderBrush" StartPoint="0,0" EndPoint="0,1">
+	  <LinearGradientBrush.GradientStops>
+		<GradientStopCollection>
+		  <GradientStop Color="#ff75aac7" Offset="0" />
+		  <GradientStop Color="#ff143c65" Offset="1" />
+		</GradientStopCollection>
+	  </LinearGradientBrush.GradientStops>
+	</LinearGradientBrush>
+	<Style x:Key="GridViewColumnHeaderGripper" TargetType="Thumb">
+	  <Setter Property="Width" Value="18" />
+	  <Setter Property="Background" Value="#2e566b" />
+	  <Setter Property="Template">
+		<Setter.Value>
+		  <ControlTemplate TargetType="{x:Type Thumb}">
+			<Border Padding="{TemplateBinding Padding}" Background="Transparent">
+			  <Rectangle HorizontalAlignment="Center" Width="1" Fill="{TemplateBinding Background}" />
+			</Border>
+		  </ControlTemplate>
+		</Setter.Value>
+	  </Setter>
+	</Style>
+	<Style TargetType="{x:Type GridViewColumnHeader}">
+	  <Setter Property="HorizontalContentAlignment" Value="Center"/>
+	  <Setter Property="VerticalContentAlignment" Value="Center" />
+	  <Setter Property="Foreground" Value="White" />
+	  <Setter Property="Padding" Value="8" />
+	  <Setter Property="Template">
+		<Setter.Value>
+		  <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+			<Grid>
+			  <Border Name="HeaderBorder" Padding="{TemplateBinding Padding}" BorderThickness="0,1,0,1" BorderBrush="{StaticResource BorderBrush}" Background="{StaticResource BackgroundBrush}">
+				<ContentPresenter Name="HeaderContent" Margin="0,0,0,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+			  </Border>
+			  <Thumb x:Name="PART_HeaderGripper" HorizontalAlignment="Right" Margin="0,0,-9,0" Style="{StaticResource GridViewColumnHeaderGripper}" />
+			</Grid>
+			<ControlTemplate.Triggers>
+			  <Trigger Property="IsMouseOver" Value="True">
+				<Setter TargetName="HeaderBorder" Property="Background" Value="{StaticResource HighlightBackgroundBrush}" />
+			  </Trigger>
+			  <Trigger Property="IsPressed" Value="True">
+				<Setter TargetName="HeaderBorder" Property="Background" Value="{StaticResource PressedBorderBrush}" />
+				<Setter TargetName="HeaderContent" Property="Margin" Value="1,1,0,0" />
+			  </Trigger>
+			  <Trigger Property="IsEnabled" Value="False">
+				<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+			  </Trigger>
+			</ControlTemplate.Triggers>
+		  </ControlTemplate>
+		</Setter.Value>
+	  </Setter>
+	  <Style.Triggers>
+		<Trigger Property="Role" Value="Floating">
+		  <Setter Property="Opacity" Value="0.7" />
+		  <Setter Property="Template">
+			<Setter.Value>
+			  <ControlTemplate TargetType="GridViewColumnHeader">
+				<Canvas Name="PART_FloatingHeaderCanvas">
+				  <Rectangle Fill="#60000000" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}" />
+				</Canvas>
+			  </ControlTemplate>
+			</Setter.Value>
+		  </Setter>
+		</Trigger>
+		<Trigger Property="Role" Value="Padding">
+		  <Setter Property="Template">
+			<Setter.Value>
+			  <ControlTemplate TargetType="GridViewColumnHeader">
+				<Border Name="HeaderBorder" BorderThickness="0,1,0,1" BorderBrush="{StaticResource BorderBrush}" Background="{StaticResource BackgroundBrush}" />
+			  </ControlTemplate>
+			</Setter.Value>
+		  </Setter>
+		</Trigger>
+	  </Style.Triggers>
+	</Style>
+	<Style x:Key="{x:Static GridView.GridViewScrollViewerStyleKey}" TargetType="ScrollViewer">
+	  <Setter Property="Template">
+		<Setter.Value>
+		  <ControlTemplate TargetType="ScrollViewer">
+			<Grid Background="{TemplateBinding Background}">
+			  <Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+			  </Grid.ColumnDefinitions>
+			  <Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			  </Grid.RowDefinitions>
+			  <DockPanel Margin="{TemplateBinding Padding}">
+				<ScrollViewer DockPanel.Dock="Top" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Focusable="false">
+				  <GridViewHeaderRowPresenter Margin="0,0,0,0"
+                                                                Columns="{Binding Path=TemplatedParent.View.Columns, RelativeSource={RelativeSource TemplatedParent}}" 
+                                                                ColumnHeaderContainerStyle="{Binding Path=TemplatedParent.View.ColumnHeaderContainerStyle, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                ColumnHeaderTemplate="{Binding Path=TemplatedParent.View.ColumnHeaderTemplate,RelativeSource={RelativeSource TemplatedParent}}"
+                                                                ColumnHeaderTemplateSelector="{Binding Path=TemplatedParent.View.ColumnHeaderTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                AllowsColumnReorder="{Binding Path=TemplatedParent.View.AllowsColumnReorder, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                ColumnHeaderContextMenu="{Binding Path=TemplatedParent.View.ColumnHeaderContextMenu, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                ColumnHeaderToolTip="{Binding Path=TemplatedParent.View.ColumnHeaderToolTip, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+				</ScrollViewer>
+				<ScrollContentPresenter Name="PART_ScrollContentPresenter"
+                                                        KeyboardNavigation.DirectionalNavigation="Local"
+                                                        CanContentScroll="True" CanHorizontallyScroll="False" 
+                                                        CanVerticallyScroll="False" />
+			  </DockPanel>
+			  <ScrollBar Name="PART_HorizontalScrollBar" Orientation="Horizontal" Grid.Row="1" Maximum="{TemplateBinding ScrollableWidth}" 
+                                       ViewportSize="{TemplateBinding ViewportWidth}" Value="{TemplateBinding HorizontalOffset}"
+                                       Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" />
+			  <ScrollBar Name="PART_VerticalScrollBar" Grid.Column="1" Maximum="{TemplateBinding ScrollableHeight}" 
+                                       ViewportSize="{TemplateBinding ViewportHeight}" Value="{TemplateBinding VerticalOffset}" 
+                                       Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+			</Grid>
+		  </ControlTemplate>
+		</Setter.Value>
+	  </Setter>
+	</Style>
+	<Style TargetType="ListView">
+	  <Setter Property="SnapsToDevicePixels" Value="True" />
+	  <Setter Property="OverridesDefaultStyle" Value="True"/>
+	  <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+	  <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+	  <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+	  <Setter Property="VerticalContentAlignment" Value="Center"/>
+	  <Setter Property="Template">
+		<Setter.Value>
+		  <ControlTemplate TargetType="ListView">
+			<Border Name="Border" BorderThickness="1" BorderBrush="#999999" Background="#dfdfdf">
+			  <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
+				<ItemsPresenter />
+			  </ScrollViewer>
+			</Border>
+			<ControlTemplate.Triggers>
+			  <Trigger Property="IsGrouping" Value="True">
+				<Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+			  </Trigger>
+			  <Trigger Property="IsEnabled" Value="False">
+				<Setter TargetName="Border" Property="Background" Value="#bbbbbb" />
+			  </Trigger>
+			</ControlTemplate.Triggers>
+		  </ControlTemplate>
+		</Setter.Value>
+	  </Setter>
+	</Style>
+	<Style x:Key="ListViewItemContainerStyle" TargetType="{x:Type ListViewItem}">
+	  <Setter Property="Background" Value="White" />
+	  <Setter Property="HorizontalContentAlignment" Value="Left" />
+	  <Setter Property="VerticalContentAlignment" Value="Center" />
+	  <Setter Property="Foreground" Value="Black" />
+	  <Setter Property="Margin" Value="0" />
+	  <Setter Property="Template">
+		<Setter.Value>
+		  <ControlTemplate TargetType="{x:Type ListViewItem}">
+			<Border x:Name="Bd" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" BorderThickness="0,0,0,1" BorderBrush="#6FBDE8">
+			  <GridViewRowPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+			</Border>
+			<ControlTemplate.Triggers>
+			  <Trigger Property="IsSelected" Value="True">
+				<Setter TargetName="Bd" Property="BorderBrush" Value="#FF143c65" />
+				<Setter TargetName="Bd" Property="Background">
+				  <Setter.Value>
+					<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+					  <LinearGradientBrush.GradientStops>
+						<GradientStopCollection>
+						  <GradientStop Color="#FF75AAc7" Offset="0" />
+						  <GradientStop Color="#FF143c65" Offset="1" />
+						</GradientStopCollection>
+					  </LinearGradientBrush.GradientStops>
+					</LinearGradientBrush>
+				  </Setter.Value>
+				</Setter>
+			  </Trigger>
+			  <Trigger Property="IsMouseOver" Value="True">
+				<Setter TargetName="Bd" Property="Background" Value="#e0eff8" />
+			  </Trigger>
+			  <MultiTrigger>
+				<MultiTrigger.Conditions>
+				  <Condition Property="IsSelected" Value="True" />
+				  <Condition Property="Selector.IsSelectionActive" Value="True" />
+				</MultiTrigger.Conditions>
+				<Setter TargetName="Bd" Property="Background">
+				  <Setter.Value>
+					<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+					  <LinearGradientBrush.GradientStops>
+						<GradientStopCollection>
+						  <GradientStop Color="#FF75AAc7" Offset="0" />
+						  <GradientStop Color="#FF143c65" Offset="1" />
+						</GradientStopCollection>
+					  </LinearGradientBrush.GradientStops>
+					</LinearGradientBrush>
+				  </Setter.Value>
+				</Setter>
+				<Setter Property="BorderBrush" TargetName="Bd" Value="#FF143c65" />
+				<Setter Property="Foreground" Value="White" />
+			  </MultiTrigger>
+			</ControlTemplate.Triggers>
+		  </ControlTemplate>
+		</Setter.Value>
+	  </Setter>
+	</Style>
+  </UserControl.Resources>
+  <Grid>
+	<Grid.RowDefinitions>
+	  <RowDefinition Height="Auto" />
+	  <RowDefinition Height="*" />
+	  <RowDefinition Height="Auto" />
+	</Grid.RowDefinitions>
+	<StackPanel Grid.Row="0" Orientation="Horizontal">
+	  <StackPanel Orientation="Horizontal">
+		<TextBlock Text="Source Directory:" Margin="3"/>
+		<TextBox Width="250" Margin="3" Text="{Binding SourceFolder}"/>
+		<Button Content="Browse" Margin="3" Command="{Binding BrowseFile}"/>
+	  </StackPanel>
+	  <StackPanel Orientation="Horizontal">
+		<TextBlock Text="Period End:" Margin="3"/>
+		<DatePicker Width="150" Margin="3" SelectedDate="{Binding PeriodEnd}" />
+	  </StackPanel>
+	</StackPanel>
+	<Border Grid.Row="1">
+	  <ListView 
+                ItemsSource="{Binding Source={StaticResource GroupByStore}}"
+                ItemContainerStyle="{DynamicResource ListViewItemContainerStyle}">
+		<ListView.View>
+		  <GridView>
+			<GridViewColumn Header="Account" DisplayMemberBinding="{Binding AccountName}" />
+			<GridViewColumn Header="Account Number" DisplayMemberBinding="{Binding AccountNumber}" />
+			<GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Amount, StringFormat=C}" />
+		  </GridView>
+		</ListView.View>
+		<ListView.GroupStyle>
+		  <GroupStyle>
+			<GroupStyle.ContainerStyle>
+			  <Style TargetType="{x:Type GroupItem}">
+				<Setter Property="Template">
+				  <Setter.Value>
+					<ControlTemplate TargetType="{x:Type GroupItem}">
+					  <Expander IsExpanded="False">
+						<Expander.Header>
+						  <StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding Name}" FontWeight="Bold" VerticalAlignment="Bottom" />
+							<TextBlock Text=" - " />
+							<TextBlock Text="{Binding Path=Items, Converter={StaticResource sumConverter}, StringFormat=C}" />
+						  </StackPanel>
+						</Expander.Header>
+						<ItemsPresenter />
+					  </Expander>
+					</ControlTemplate>
+				  </Setter.Value>
+				</Setter>
+			  </Style>
+			</GroupStyle.ContainerStyle>
+		  </GroupStyle>
+		</ListView.GroupStyle>
+	  </ListView>
+	</Border>
+	<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+	  <Button Margin="5" Padding="5" Content="Export Data" Command="{Binding ExportData}" />
+	</StackPanel>
+	<Border BorderBrush="Black" BorderThickness="1" 
+                Background="#80000000" Visibility="{Binding IsBusy, Converter={StaticResource boolConverter}}" 
+                Grid.RowSpan="3">
+	  <Grid>
+		<TextBlock Margin="0" TextWrapping="Wrap" Text="Please Wait..." 
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           FontSize="24" FontWeight="Bold" Foreground="#7FFFFFFF" />
+	  </Grid>
+	</Border>
+  </Grid>
+</UserControl>

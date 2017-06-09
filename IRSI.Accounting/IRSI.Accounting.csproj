@@ -165,6 +165,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Data\IRSI.Accounting.Data\IRSI.Accounting.Data.csproj">
+      <Project>{5050ee11-162c-4fb0-9d17-ae91d137417c}</Project>
+      <Name>IRSI.Accounting.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IRSI.Accounting.Common\IRSI.Accounting.Common.csproj">
       <Project>{400a9e27-e9ae-485c-ab15-e5674b9f7a37}</Project>
       <Name>IRSI.Accounting.Common</Name>
