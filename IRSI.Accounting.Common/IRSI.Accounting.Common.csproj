@@ -30,22 +30,41 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Events\NavigationCompletedEvent.cs" />
     <Compile Include="Models\Concept.cs" />
     <Compile Include="Models\Store.cs" />
+    <Compile Include="MVVM\DialogService\DialogEnums.cs" />
+    <Compile Include="MVVM\DialogService\DialogHelpers.cs" />
+    <Compile Include="MVVM\DialogService\DialogService.cs" />
+    <Compile Include="MVVM\DialogService\FolderBrowserDialogService.cs" />
+    <Compile Include="MVVM\DialogService\FrameworkDialogs\FileDialogViewModel.cs" />
+    <Compile Include="MVVM\DialogService\FrameworkDialogs\FolderBrowse\FolderBrowserDialog.cs" />
+    <Compile Include="MVVM\DialogService\FrameworkDialogs\FolderBrowse\FolderBrowserDialogViewModel.cs" />
+    <Compile Include="MVVM\DialogService\FrameworkDialogs\FolderBrowse\IFolderBrowserDialog.cs" />
+    <Compile Include="MVVM\DialogService\FrameworkDialogs\IFileDialog.cs" />
+    <Compile Include="MVVM\DialogService\FrameworkDialogs\OpenFile\IOpenFileDialog.cs" />
+    <Compile Include="MVVM\DialogService\FrameworkDialogs\OpenFile\OpenFileDialog.cs" />
+    <Compile Include="MVVM\DialogService\FrameworkDialogs\OpenFile\OpenFileDialogViewModel.cs" />
+    <Compile Include="MVVM\DialogService\FrameworkDialogs\WindowWrapper.cs" />
+    <Compile Include="MVVM\DialogService\IDialogService.cs" />
+    <Compile Include="MVVM\DialogService\IFolderBrowserDialogService.cs" />
     <Compile Include="RegionNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

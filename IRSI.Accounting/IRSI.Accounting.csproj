@@ -93,33 +93,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Collections\RangeObservableCollection.cs" />
-    <Compile Include="MVVM\CommandObserver.cs" />
-    <Compile Include="MVVM\ICommandObserver.cs" />
-    <Compile Include="Extensions\CompositeDisposableExtension.cs" />
-    <Compile Include="Extensions\EnumarableExtensions.cs" />
-    <Compile Include="MVVM\IMessageBus.cs" />
-    <Compile Include="MVVM\IPropertyProvider.cs" />
-    <Compile Include="MVVM\IPropertyProviderFactory.cs" />
-    <Compile Include="MVVM\IPropertySubject.cs" />
-    <Compile Include="MVVM\ISchedulers.cs" />
-    <Compile Include="MVVM\PropertyProvider.cs" />
-    <Compile Include="MVVM\PropertyProviderFactory.cs" />
-    <Compile Include="MVVM\PropertySubject.cs" />
-    <Compile Include="MVVM\Schedulers.cs" />
-    <Compile Include="MVVM\ViewModelBase.cs" />
-    <Compile Include="Services\DialogService.cs" />
-    <Compile Include="Services\IDialogService.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Services\Duration.cs" />
-    <Compile Include="Services\IService.cs" />
     <Compile Include="ViewModels\ICloseable.cs" />
-    <Compile Include="Views\DialogWindow.xaml.cs">
-      <DependentUpon>DialogWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
@@ -151,14 +129,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Views\DialogWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Shell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

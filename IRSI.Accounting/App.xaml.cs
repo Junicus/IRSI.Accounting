@@ -34,16 +34,16 @@ namespace IRSI.Accounting
 
 	protected override void OnStartup(StartupEventArgs e)
 	{
-	  using (Services.Duration.Measure(Logger, "OnStartup - " + GetType().Name))
-	  {
-		Logger.Info("Starting");
+	  //	  using (Services.Duration.Measure(Logger, "OnStartup - " + GetType().Name))
+	  //	  {
+	  Logger.Info("Starting");
 
-		base.OnStartup(e);
-		Bootstrapper bootstrapper = new Bootstrapper();
-		bootstrapper.Run();
+	  base.OnStartup(e);
+	  Bootstrapper bootstrapper = new Bootstrapper();
+	  bootstrapper.Run();
 
-		Logger.Info("Started");
-	  }
+	  Logger.Info("Started");
+	  //	  }
 	}
 
 	private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

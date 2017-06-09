@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using Autofac;
+using IRSI.Accounting.Common.MVVM.DialogService;
 using IRSI.Accounting.Data;
 using IRSI.Accounting.Data.Repositories;
 using IRSI.Accounting.Views;
@@ -62,6 +63,8 @@ namespace IRSI.Accounting
 	  builder.RegisterType<Shell>();
 
 	  builder.RegisterType<InMemoryStoresRepository>().As<IStoresRepository>();
+	  builder.RegisterType<FolderBrowserDialogService>().As<IFolderBrowserDialogService>();
+	  builder.RegisterType<DialogService>().As<IDialogService>();
 
 	  string[] assemblyScannerPattern = new[] { @"IRSI.Accounting.Modules.*.dll" };
 	  Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
