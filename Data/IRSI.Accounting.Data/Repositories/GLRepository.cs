@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IRSI.Accounting.Data.DataSets;
+using IRSI.Accounting.Data.DataSets.GLDataSetTableAdapters;
+using IRSI.Accounting.Data.Properties;
 using NLog;
 
 namespace IRSI.Accounting.Data.Repositories

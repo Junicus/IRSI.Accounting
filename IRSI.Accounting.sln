@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRSI.Accounting.Common", "I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRSI.Accounting.Data", "Data\IRSI.Accounting.Data\IRSI.Accounting.Data.csproj", "{5050EE11-162C-4FB0-9D17-AE91D137417C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRSI.Accounting.Modules.Sales", "Modules\IRSI.Accounting.Modules.Sales\IRSI.Accounting.Modules.Sales.csproj", "{73783F25-48F6-4EEE-B290-D7640C24CCB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{5050EE11-162C-4FB0-9D17-AE91D137417C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5050EE11-162C-4FB0-9D17-AE91D137417C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5050EE11-162C-4FB0-9D17-AE91D137417C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73783F25-48F6-4EEE-B290-D7640C24CCB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73783F25-48F6-4EEE-B290-D7640C24CCB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73783F25-48F6-4EEE-B290-D7640C24CCB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73783F25-48F6-4EEE-B290-D7640C24CCB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,5 +50,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3EACB1B7-ADEF-4C23-9FC5-457DF178AEBF} = {4281D562-645D-4231-BD48-33CF0D4B2AE1}
 		{5050EE11-162C-4FB0-9D17-AE91D137417C} = {07F981B8-1448-429D-B903-3218C1011B7C}
+		{73783F25-48F6-4EEE-B290-D7640C24CCB7} = {4281D562-645D-4231-BD48-33CF0D4B2AE1}
 	EndGlobalSection
 EndGlobal

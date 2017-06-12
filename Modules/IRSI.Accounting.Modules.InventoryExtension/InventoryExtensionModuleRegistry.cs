@@ -19,6 +19,11 @@ namespace IRSI.Accounting.Modules.InventoryExtension
 
 	  builder.RegisterType<InventoryChartOfAccounts>().As<IInventoryChartOfAccounts>();
 
+	  builder.RegisterType<InventoryExtensionMenuLinkParser>().Named<IInventoryExtensionParser>("MenuLinkParser");
+	  builder.RegisterType<InventoryExtensionIslandWideParser>().Named<IInventoryExtensionParser>("IslandWideParser");
+
+	  builder.RegisterType<InventoryExtensionLineParser>().As<IInventoryExtensionLineParser>();
+
 	  builder.RegisterType<InventoryExtensionModuleViewModel>().As<IInventoryExtensionModuleViewModel>();
 	  builder.RegisterType<InventoryExtensionTabViewModel>().As<IInventoryExtensionTabViewModel>();
 	  builder.RegisterType<InventoryExtensionMenuLinkViewModel>().Named<IInventoryExtensionViewModel>("MenuLinkViewModel");

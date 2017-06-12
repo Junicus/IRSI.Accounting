@@ -51,6 +51,11 @@
     <Compile Include="IGLRepository.cs" />
     <Compile Include="IStoresRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\GLRepository.cs" />
     <Compile Include="Repositories\InMemoryStoresRepository.cs" />
   </ItemGroup>
@@ -61,6 +66,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="DataSets\GLDataSet.xsc">
       <DependentUpon>GLDataSet.xsd</DependentUpon>
     </None>
@@ -73,6 +79,10 @@
       <DependentUpon>GLDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -63,6 +63,7 @@ namespace IRSI.Accounting
 	  builder.RegisterType<Shell>();
 
 	  builder.RegisterType<InMemoryStoresRepository>().As<IStoresRepository>();
+	  builder.RegisterType<GLRepository>().As<IGLRepository>();
 	  builder.RegisterType<FolderBrowserDialogService>().As<IFolderBrowserDialogService>();
 	  builder.RegisterType<DialogService>().As<IDialogService>();
 

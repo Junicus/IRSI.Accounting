@@ -56,6 +56,11 @@ namespace IRSI.Accounting.Data.Repositories
 	  _stores.Add(new Store { Id = 34, Name = "403 PFC Caguas", Concept = _concepts[3], Number = "403", InsightName = "03 PFC Caguas" });
 	}
 
+	public Store GetStoreByInsightName(string insightName)
+	{
+	  return _stores.SingleOrDefault(s => s.InsightName == insightName);
+	}
+
 	public IEnumerable<Store> GetStores()
 	{
 	  return _stores;
