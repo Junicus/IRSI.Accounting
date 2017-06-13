@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="IRSI.Accounting.Modules.StockTransfer.Views.ImportStockTransferView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IRSI.Accounting.Modules.StockTransfer.Views"
+			 xmlns:views="clr-namespace:IRSI.Accounting.Modules.StockTransfer.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+  <UserControl.Resources>
+	<BooleanToVisibilityConverter x:Key="boolConverter" />
+  </UserControl.Resources>
+  <Grid>
+	<Grid.RowDefinitions>
+	  <RowDefinition Height="Auto" />
+	  <RowDefinition Height="*" />
+	  <RowDefinition Height="Auto" />
+	</Grid.RowDefinitions>
+
+	<StackPanel Grid.Row="0" Orientation="Horizontal" Width="Auto">
+	  <StackPanel Orientation="Horizontal">
+		<TextBlock Text="Source File:" Margin="3" />
+		<TextBox Width="250" Margin="3" Text="{Binding FilePath}" />
+		<Button Content="Browse..." Margin="3" Command="{Binding SelectImportFile}" />
+	  </StackPanel>
+	  <StackPanel Orientation="Horizontal">
+		<TextBlock Text="Concept:" Margin="3" />
+		<ComboBox Width="150" SelectedItem="{Binding ConceptSelected}" Margin="3" ItemsSource="{Binding Concepts}" />
+	  </StackPanel>
+	  <StackPanel Orientation="Horizontal">
+		<TextBlock Text="Period End:" Margin="3" />
+		<DatePicker Width="150" Margin="3" Text="{Binding PeriodEnd}" />
+	  </StackPanel>
+	  <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+		<Button Margin="3" Content="Read Data" Command="{Binding ReadStockTransfer}" />
+	  </StackPanel>
+	</StackPanel>
+	<Border Grid.Row="1">
+	  <ScrollViewer VerticalScrollBarVisibility="Auto">
+		<ItemsControl ItemsSource="{Binding Items}">
+		  <ItemsControl.ItemTemplate>
+			<DataTemplate>
+			  <Border BorderThickness="1" BorderBrush="Black" CornerRadius="5">
+				<views:StockTransferInOutPairView Width="500" Margin="3"/>
+			  </Border>
+			</DataTemplate>
+		  </ItemsControl.ItemTemplate>
+		  <ItemsControl.ItemsPanel>
+			<ItemsPanelTemplate>
+			  <StackPanel />
+			</ItemsPanelTemplate>
+		  </ItemsControl.ItemsPanel>
+		</ItemsControl>
+	  </ScrollViewer>
+	</Border>
+	<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+	  <Button Margin="5" Padding="5" Content="Export Data" Command="{Binding ExportStockTransfer}" />
+	</StackPanel>
+	<Border BorderBrush="Black" BorderThickness="1" Background="#80000000" Visibility="{Binding IsBusy, Converter={StaticResource boolConverter}}" Grid.RowSpan="3">
+	  <Grid>
+		<TextBlock Margin="0" TextWrapping="Wrap" Text="Please Wait..."
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           FontSize="24" FontWeight="Bold" Foreground="#7FFFFFFF" />
+	  </Grid>
+	</Border>
+  </Grid>
+</UserControl>
