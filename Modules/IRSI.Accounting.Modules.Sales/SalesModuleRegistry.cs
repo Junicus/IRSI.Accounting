@@ -19,10 +19,10 @@ namespace IRSI.Accounting.Modules.Sales
 
 	  builder.RegisterType<SalesFileParser>().As<ISalesFileParser>();
 
-	  builder.RegisterType<CGBSalesLineParser>().Named<ISalesLineParser>("CGBSalesLineParser");
-	  builder.RegisterType<RMGSalesLineParser>().Named<ISalesLineParser>("RMGSalesLineParser");
-	  builder.RegisterType<OTBSalesLineParser>().Named<ISalesLineParser>("OTBSalesLineParser");
-	  builder.RegisterType<PFCSalesLineParser>().Named<ISalesLineParser>("PFCSalesLineParser");
+	  builder.RegisterType<CGBSalesLineParser>().Named<ISalesLineParser>(typeof(CGBSalesLineParser).Name);
+	  builder.RegisterType<RMGSalesLineParser>().Named<ISalesLineParser>(typeof(RMGSalesLineParser).Name);
+	  builder.RegisterType<OTBSalesLineParser>().Named<ISalesLineParser>(typeof(OTBSalesLineParser).Name);
+	  builder.RegisterType<PFCSalesLineParser>().Named<ISalesLineParser>(typeof(PFCSalesLineParser).Name);
 
 	  builder.RegisterType<SalesImportConfigurationService>().As<ISalesImportConfiguration>();
 
@@ -30,8 +30,8 @@ namespace IRSI.Accounting.Modules.Sales
 	  builder.RegisterType<SalesTabViewModel>().As<ISalesTabViewModel>();
 	  builder.RegisterType<ImportSalesAlohaViewModel>().As<IImportSalesAlohaViewModel>();
 
-	  builder.RegisterType<SalesTabView>().Named<object>("SalesTabView");
-	  builder.RegisterType<ImportSalesAlohaView>().Named<object>("ImportSalesAlohaView");
+	  builder.RegisterType<SalesTabView>().Named<object>(typeof(SalesTabView).Name);
+	  builder.RegisterType<ImportSalesAlohaView>().Named<object>(typeof(ImportSalesAlohaView).Name);
 
 	  builder.RegisterType<SalesModule>().As<IModule>();
 	}

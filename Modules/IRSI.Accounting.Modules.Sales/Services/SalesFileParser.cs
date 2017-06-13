@@ -43,16 +43,16 @@ namespace IRSI.Accounting.Modules.Sales.Services
 		  switch (concept)
 		  {
 			case "100":
-			  parser = _lineParsers["CGBSalesLineParser"];
+			  parser = _lineParsers[typeof(CGBSalesLineParser).Name];
 			  break;
 			case "200":
-			  parser = _lineParsers["RMGSalesLineParser"];
+			  parser = _lineParsers[typeof(RMGSalesLineParser).Name];
 			  break;
 			case "300":
-			  parser = _lineParsers["OTBSalesLineParser"];
+			  parser = _lineParsers[typeof(OTBSalesLineParser).Name];
 			  break;
 			case "400":
-			  parser = _lineParsers["PFCSalesLineParser"];
+			  parser = _lineParsers[typeof(PFCSalesLineParser).Name];
 			  break;
 		  }
 

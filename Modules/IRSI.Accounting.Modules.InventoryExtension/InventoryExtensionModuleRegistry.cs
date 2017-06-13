@@ -29,9 +29,9 @@ namespace IRSI.Accounting.Modules.InventoryExtension
 	  builder.RegisterType<InventoryExtensionMenuLinkViewModel>().Named<IInventoryExtensionViewModel>("MenuLinkViewModel");
 	  builder.RegisterType<InventoryExtensionIslandWideViewModel>().Named<IInventoryExtensionViewModel>("IslandWideViewModel");
 
-	  builder.RegisterType<InventoryExtensionTabView>().Named<object>("InventoryExtensionTabView");
-	  builder.RegisterType<MenuLinkView>().Named<object>("MenuLinkView");
-	  builder.RegisterType<IslandWideView>().Named<object>("IslandWideView");
+	  builder.RegisterType<InventoryExtensionTabView>().Named<object>(typeof(InventoryExtensionTabView).Name);
+	  builder.RegisterType<MenuLinkView>().Named<object>(typeof(MenuLinkView).Name);
+	  builder.RegisterType<IslandWideView>().Named<object>(typeof(IslandWideView).Name);
 
 	  builder.RegisterType<InventoryExtensionModule>().As<IModule>();
 	}
