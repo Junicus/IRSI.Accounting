@@ -22,7 +22,7 @@ namespace IRSI.Accounting.Modules.InventoryExtension
 	  builder.RegisterType<InventoryExtensionMenuLinkParser>().Named<IInventoryExtensionParser>("MenuLinkParser");
 	  builder.RegisterType<InventoryExtensionIslandWideParser>().Named<IInventoryExtensionParser>("IslandWideParser");
 
-	  builder.RegisterType<InventoryExtensionLineParser>().As<IInventoryExtensionLineParser>();
+	  builder.RegisterType<InventoryExtensionLineParser>().As<IInventoryExtensionLineParser>().SingleInstance();
 
 	  builder.RegisterType<InventoryExtensionModuleViewModel>().As<IInventoryExtensionModuleViewModel>();
 	  builder.RegisterType<InventoryExtensionTabViewModel>().As<IInventoryExtensionTabViewModel>();

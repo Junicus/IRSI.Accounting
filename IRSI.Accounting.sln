@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRSI.Accounting", "IRSI.Accounting\IRSI.Accounting.csproj", "{9816AB62-8E13-476A-99FF-D69A69D26739}"
 EndProject
@@ -18,6 +18,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRSI.Accounting.Modules.Sales", "Modules\IRSI.Accounting.Modules.Sales\IRSI.Accounting.Modules.Sales.csproj", "{73783F25-48F6-4EEE-B290-D7640C24CCB7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRSI.Accounting.Modules.StockTransfer", "Modules\IRSI.Accounting.Modules.StockTransfer\IRSI.Accounting.Modules.StockTransfer.csproj", "{FD7EED52-B920-43E4-9F9F-BB36FF0B5448}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7FDE88C8-CA40-4BFD-88F3-8A8C60416D0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRSI.Accounting.Models.InventoryExtension.Tests", "Tests\IRSI.Accounting.Models.InventoryExtension.Tests\IRSI.Accounting.Models.InventoryExtension.Tests.csproj", "{2FF65244-9768-4BF9-BAE6-0DFA0A109B7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,10 @@ Global
 		{FD7EED52-B920-43E4-9F9F-BB36FF0B5448}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD7EED52-B920-43E4-9F9F-BB36FF0B5448}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD7EED52-B920-43E4-9F9F-BB36FF0B5448}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FF65244-9768-4BF9-BAE6-0DFA0A109B7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FF65244-9768-4BF9-BAE6-0DFA0A109B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FF65244-9768-4BF9-BAE6-0DFA0A109B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FF65244-9768-4BF9-BAE6-0DFA0A109B7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,5 +66,6 @@ Global
 		{5050EE11-162C-4FB0-9D17-AE91D137417C} = {07F981B8-1448-429D-B903-3218C1011B7C}
 		{73783F25-48F6-4EEE-B290-D7640C24CCB7} = {4281D562-645D-4231-BD48-33CF0D4B2AE1}
 		{FD7EED52-B920-43E4-9F9F-BB36FF0B5448} = {4281D562-645D-4231-BD48-33CF0D4B2AE1}
+		{2FF65244-9768-4BF9-BAE6-0DFA0A109B7A} = {7FDE88C8-CA40-4BFD-88F3-8A8C60416D0F}
 	EndGlobalSection
 EndGlobal

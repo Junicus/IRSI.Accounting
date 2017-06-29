@@ -26,7 +26,7 @@ namespace IRSI.Accounting.Modules.InventoryExtension.Services
 	  var parts = line.Split(',');
 	  if (parts.Length <= 1 || !parts[0].StartsWith("Total:"))
 		return null;
-
+	   
 	  if (_stores == null)
 	  {
 		_stores = _storesRepository.GetStores();
@@ -40,7 +40,6 @@ namespace IRSI.Accounting.Modules.InventoryExtension.Services
 				   select s).SingleOrDefault();
 
 	  var account = _chartOfAccounts.FindAccount(store.Concept.Name, accountName);
-	  if (account == null) return null;
 	  var amount = 0.0m;
 	  if (account != null)
 	  {

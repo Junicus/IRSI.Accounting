@@ -23,7 +23,7 @@ namespace IRSI.Accounting.Modules.InventoryExtension.Models
 
 	public string AccountNumber
 	{
-	  get => _accountName;
+	  get => _accountNumber;
 	  set => SetProperty<string>(ref _accountNumber, value, nameof(AccountNumber));
 	}
 
