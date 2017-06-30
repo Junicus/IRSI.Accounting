@@ -48,10 +48,10 @@ namespace IRSI.Accounting.Modules.InventoryExtension.ViewModels
 	  set => SetProperty<ICommand>(ref _showInventoryExtensionMenuLinkView, value, nameof(ShowInventoryExtensionMenuLinkView));
 	}
 
-	public ICommand ShowInventoryExtensionIslanWideView
+	public ICommand ShowInventoryExtensionIslandWideView
 	{
 	  get => _showInventoryExtensionIslandWideView;
-	  set => SetProperty<ICommand>(ref _showInventoryExtensionIslandWideView, value, nameof(ShowInventoryExtensionIslanWideView));
+	  set => SetProperty<ICommand>(ref _showInventoryExtensionIslandWideView, value, nameof(ShowInventoryExtensionIslandWideView));
 	}
 
 	private void NavigationCompleted(NavigationResult result)
