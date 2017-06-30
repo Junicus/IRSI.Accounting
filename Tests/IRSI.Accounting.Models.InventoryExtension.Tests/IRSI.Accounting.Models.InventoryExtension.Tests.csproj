@@ -56,6 +56,9 @@
   <ItemGroup>
     <Compile Include="InventoryExtensionLineParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="InventoryExtensionMenuLinkParserTests.cs" />
+    <Compile Include="InventoryExtensionFileReaderTests.cs" />
+    <Compile Include="InventoryChartOfAccountsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -73,6 +76,11 @@
       <Project>{3eacb1b7-adef-4c23-9fc5-457df178aebf}</Project>
       <Name>IRSI.Accounting.Modules.InventoryExtension</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="301.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

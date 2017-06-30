@@ -17,6 +17,7 @@ namespace IRSI.Accounting.Modules.InventoryExtension
 	{
 	  base.Load(builder);
 
+	  builder.RegisterType<InventoryExtensionFileReader>().As<IInventoryExtensionFileReader>();
 	  builder.RegisterType<InventoryChartOfAccounts>().As<IInventoryChartOfAccounts>();
 
 	  builder.RegisterType<InventoryExtensionMenuLinkParser>().Named<IInventoryExtensionParser>("MenuLinkParser");
