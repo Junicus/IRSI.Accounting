@@ -34,18 +34,6 @@ namespace IRSI.Accounting.Modules.InventoryExtension.Services
 	  return GetItems(lines, store);
 	}
 
-	private List<InventoryExtensionItem> GetItems(IEnumerable<string> lines, Store store)
-	{
-	  var items = new List<InventoryExtensionItem>();
-	  foreach (var line in lines)
-	  {
-		var item = _lineParser.ParseLine(store, line);
-		if (item != null)
-		  items.Add(item);
-	  }
-	  return items;
-	}
-
 	private Store GetStore(IEnumerable<string> lines)
 	{
 	  string storeNumber = GetStoreNumber(lines);
@@ -56,6 +44,14 @@ namespace IRSI.Accounting.Modules.InventoryExtension.Services
 	  return store;
 	}
 
+	private static string GetStoreNumber(IEnumerable<string> lines)
+	{
+	  var storeNumber = string.Empty;
+	  if (lines.Any())
+		storeNumber = lines.First().Split(' ')[0];
+	  return storeNumber;
+	}
+
 	private void LoadStores()
 	{
 	  if (_stores == null)
@@ -64,12 +60,16 @@ namespace IRSI.Accounting.Modules.InventoryExtension.Services
 	  }
 	}
 
-	private static string GetStoreNumber(IEnumerable<string> lines)
+	private List<InventoryExtensionItem> GetItems(IEnumerable<string> lines, Store store)
 	{
-	  var storeNumber = string.Empty;
-	  if (lines.Any())
-		storeNumber = lines.First().Split(' ')[0];
-	  return storeNumber;
+	  var items = new List<InventoryExtensionItem>();
+	  foreach (var line in lines)
+	  {
+		var item = _lineParser.ParseLine(store, line);
+		if (item != null)
+		  items.Add(item);
+	  }
+	  return items;
 	}
   }
 }
