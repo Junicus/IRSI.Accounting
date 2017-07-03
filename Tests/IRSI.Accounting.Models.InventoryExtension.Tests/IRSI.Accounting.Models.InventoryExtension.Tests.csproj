@@ -73,6 +73,7 @@
     <Compile Include="InventoryChartOfAccountsTests.cs" />
     <Compile Include="AmountSumConverterTests.cs" />
     <Compile Include="ViewModels\InventoryExtensionModuleViewModelTests.cs" />
+    <Compile Include="ViewModels\InventoryExtensionTabViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

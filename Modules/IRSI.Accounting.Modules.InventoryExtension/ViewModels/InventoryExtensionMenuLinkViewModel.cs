@@ -166,9 +166,7 @@ namespace IRSI.Accounting.Modules.InventoryExtension.ViewModels
 		{
 		  var tempItems = _parser.ParseFile(filename);
 		  foreach (var item in tempItems)
-		  {
 			retval.Add(item);
-		  }
 		}
 	  });
 	  return retval;
