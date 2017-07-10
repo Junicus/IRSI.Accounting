@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using IRSI.Accounting.Common;
 using IRSI.Accounting.Common.Events;
+using IRSI.Accounting.Modules.InventoryExtension.Views;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
@@ -28,12 +29,12 @@ namespace IRSI.Accounting.Modules.InventoryExtension.ViewModels
 
 	  _showInventoryExtensionMenuLinkView = new DelegateCommand(() =>
 	  {
-		RequestNavigate(new Uri("MenuLinkView", UriKind.Relative));
+		RequestNavigate(new Uri(typeof(MenuLinkView).Name, UriKind.Relative));
 	  });
 
 	  _showInventoryExtensionIslandWideView = new DelegateCommand(() =>
 	  {
-		RequestNavigate(new Uri("IslandWideView", UriKind.Relative));
+		RequestNavigate(new Uri(typeof(IslandWideView).Name, UriKind.Relative));
 	  });
 	}
 
